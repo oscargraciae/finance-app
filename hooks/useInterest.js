@@ -60,10 +60,6 @@ export const useInterest = () => {
       tInitialAmount.push(totalInitial)
     }
 
-    console.table([tInterest, tContribution, tInitialAmount])
-    // console.table(tContribution)
-    // console.table(tInitialAmount)
-
     const fContribution = tContribution[tContribution.length - 1] + tInitialAmount[tInitialAmount.length - 1]
     const fInterest = tInterest[tInitialAmount.length - 1]
     setFinalContribution(fContribution)

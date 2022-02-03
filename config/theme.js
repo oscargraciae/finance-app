@@ -62,6 +62,12 @@ const theme = extendTheme({
       }
     },
     Link: {
+      baseStyle: {
+        textDecoration: 'none',
+        _hover: {
+          textDecoration: 'none',
+        }
+      },
       variants: {
         primary: {
           fontWeight: 'semibold',
