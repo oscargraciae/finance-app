@@ -7,7 +7,7 @@ import { BsBarChartLine, BsCashCoin, BsCurrencyBitcoin, BsHouse } from 'react-ic
 const SideItem = ({ title, icon, href }) => {
   const { pathname } = useRouter()
   return (
-    <Flex bg={pathname === href ? 'secondary.100' : 'blue.50'} borderRadius='md' _hover={{ bg: 'secondary.100' }} mt={2}>
+    <Flex bg={pathname === href ? 'secondary.100' : 'transparent'} borderRadius='md' _hover={{ bg: 'blue.50' }} mt={2}>
       <NextLink href={href}>
         <Link display='flex' flex={1} flexDirection='row' alignItems='center' fontWeight='500' px={3} py={3}>
           {icon}
@@ -20,7 +20,7 @@ const SideItem = ({ title, icon, href }) => {
 
 export const SideBar = () => {
   return (
-    <Flex display={{ base: 'none', md: 'flex' }} w='330px' position='sticky' top='0px' h='100vh' direction='column' justifyContent='flex-start' alignItems='flex-start' py={6} bg='white' px={3}>
+    <Flex display={{ base: 'none', md: 'flex' }} w='330px' position='sticky' top='0px' h='100vh' direction='column' justifyContent='flex-start' alignItems='flex-start' py={6} bg='white' px={3} borderLeftWidth={1} borderLeftColor='gray.200'>
       <Flex direction='column' pb={4} w='100%'>
         <SideItem title='Interes simple' href='/calculadora/interes-simple' icon={<BsBarChartLine />}/>
         <SideItem title='Interes compuesto' href='/calculadora/interes-compuesto' icon={<BsBarChartLine />} />

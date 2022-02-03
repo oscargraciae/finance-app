@@ -7,7 +7,7 @@ import { useAppContext } from '../../context/AppContext'
 export const StatCard = ({ title, icon, value }) => {
   const { currency } = useAppContext()
   return (
-    <Box bg='white' p={6} w={{ base: '100%', md: '350px' }} borderRadius='xl' mb={4}>
+    <Box bg='white' p={6} w={{ base: '100%', md: '340px' }} borderRadius='lg' mb={4} borderWidth={1} borderColor='gray.200'>
       <Flex flex={1} justifyContent='space-between'>
         <Text fontWeight='700' fontSize='3xl'>{currency}{value}</Text>
         {icon}

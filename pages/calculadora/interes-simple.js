@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BsPercent, BsCurrencyDollar, BsPiggyBank } from 'react-icons/bs'
+import { BsPercent, BsPiggyBank } from 'react-icons/bs'
 import {
   Box,
   Button,
@@ -19,11 +19,11 @@ import { useInterest } from "../../hooks/useInterest";
 import { moneyThousand } from "../../utils/format-number";
 
 import { StatCard } from "../../components/common/StatCard";
-import Head from "next/head";
 import { ChartBar } from '../../components/compound/ChartBar';
 import { TableResults } from '../../components/compound/TableResults';
 import { useAppContext } from '../../context/AppContext';
-import { Layout } from '../../components/general/Layout';
+import { Description } from '../../components/compound/Description';
+import { HeadMeta } from '../../components/common/HeadMeta';
 import { LayoutCalculator } from '../../components/general/LayoutCalculator';
 
 export default function Home() {
@@ -60,45 +60,39 @@ export default function Home() {
 
   return (
     <LayoutCalculator>
-      <Head>
-        <title>Calculadora de interés simple</title>
-        <meta name="description" content="Calcula el interés compuesto para ver cómo sus ahorros o inversiones podrían crecer con el tiempo" />
-      </Head>
-      <Flex direction="column" px={4} py={6} maxW='1100px'>
-        <Box>
-          <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>
-            Calculadora de interés simple
-          </Heading>
-          <Text color='gray.600' fontSize='lg' pr={24}>Calcula el interés compuesto para ver cómo sus ahorros o inversiones podrían crecer con el tiempo.</Text>
-        </Box>
+      <HeadMeta title='Calculadora de interés compuesto' description='Calcula el interés compuesto para ver cómo sus ahorros o inversiones podrían crecer con el tiempo' />
+
+        <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>
+          Calculadora de interés simple
+        </Heading>
+        <Text color='gray.600' fontSize='lg'>Calcula el interés compuesto para ver cómo sus ahorros o inversiones podrían crecer con el tiempo.</Text>
+
         <Flex mt={6} direction="column">
-          <Flex w="100%" justifyContent="space-between">
-            <Box w='20%'>
-              <Text fontSize="xs" fontWeight="bold">
-                Depósito inicial
-              </Text>
+          <Flex w="100%" justifyContent="space-between" direction={{ base: 'column', md: 'row' }}>
+            <Box w={{ base: '100%', md: '20%' }} mb={{ base: 4, md: 0 }}>
+              <Text fontSize="xs" fontWeight="bold">Depósito inicial</Text>
               <InputGroup size='lg'>
-                <InputLeftElement children={<Text>{currency}</Text>} />
+                <InputLeftElement><Text>{currency}</Text></InputLeftElement>
                 <Input
                   autoFocus
                   bg='white'
-                  borderRadius='xl'
+                  borderRadius='lg' borderWidth={1} borderColor='gray.100'
                   name="initialAmount"
                   value={initialAmount}
                   onChange={(e) => setInitialAmount(e.target.value)}
                 />
               </InputGroup>
             </Box>
-            <Box w='20%'>
+            <Box w={{ base: '100%', md: '20%' }} mb={{ base: 4, md: 0 }}>
               <Text fontSize="xs" fontWeight="bold">
                 Aportación{" "}
               </Text>
               <Flex alignItems='center'>
                 <InputGroup size="lg">
-                  <InputLeftElement children={<Text>{currency}</Text>} />
+                  <InputLeftElement><Text>{currency}</Text></InputLeftElement>
                   <Input
                     bg='white'
-                    borderRadius='xl'
+                    borderRadius='lg' borderWidth={1} borderColor='gray.100'
                     name="contribution"
                     value={contribution}
                     onChange={(e) => setContribution(e.target.value)}
@@ -106,7 +100,7 @@ export default function Home() {
                 </InputGroup>
               </Flex>
             </Box>
-            <Box w='20%'>
+            <Box w={{ base: '100%', md: '20%' }} mb={{ base: 4, md: 0 }}>
               <Text fontSize="xs" fontWeight="bold">
                 Tasa de interés anual{" "}
               </Text>
@@ -114,19 +108,19 @@ export default function Home() {
                 <InputGroup size="lg">
                   <Input
                     bg='white'
-                    borderRadius='xl'
+                    borderRadius='lg' borderWidth={1} borderColor='gray.100'
                     name="interest"
                     value={interest}
                     onChange={(e) => setInterest(e.target.value)}
                   />
-                  <InputRightElement children={<BsPercent color='gray.300' />} />
+                  <InputRightElement><BsPercent color='gray.300' /></InputRightElement>
                 </InputGroup>
               </Flex>
             </Box>
-            <Box w='20%'>
+            <Box w={{ base: '100%', md: '20%' }} mb={{ base: 4, md: 0 }}>
               <Text fontSize="xs" fontWeight="bold">Pago de intereses y aportación{" "}</Text>
               <Flex>
-                <Select variant='outline' bg='white' borderRadius='xl' size='lg'value={interestPeriod} onChange={(e) => setInterestPeriod(e.target.value)}>
+                <Select variant='outline' bg='white' borderRadius='lg' borderWidth={1} borderColor='gray.100' size='lg'value={interestPeriod} onChange={(e) => setInterestPeriod(e.target.value)}>
                   <option value='1'>Anual</option>s
                   <option value='12'>Mensual</option>
                   <option value='24'>Quincenal</option>
@@ -135,15 +129,15 @@ export default function Home() {
                 </Select>
               </Flex>
             </Box>
-            <Box w='15%'>
+            <Box w={{ base: '100%', md: '15%'}}>
               <Text fontSize="xs" fontWeight="bold">
                 Años a invertir{" "}
               </Text>
-              <HStack maxW="100%" spacing={0} borderWidth={1} bg='white' borderRadius='xl' p='3px'>
+              <HStack maxW="100%" spacing={0} borderWidth={1} bg='white' borderRadius='lg' borderColor='gray.100' p='3px'>
                 <Button {...dec} variant="ghost" mx={0} fontWeight="bold">-</Button>
                 <Input
                   size='lg'
-                  borderRadius='xl'
+                  borderRadius='lg' borderWidth={1} borderColor='gray.100'
                   name="numUsers"
                   {...input}
                   variant="unstyled"
@@ -153,15 +147,15 @@ export default function Home() {
               </HStack>
             </Box>
           </Flex>
-          <Flex justifyContent='space-between' my={6}>
+
+          <Flex justifyContent='space-between' my={6} direction={{ base: 'column', md: 'row' }}>
             <StatCard title='Aportación total' icon={<BsPiggyBank size={42} />} value={`${moneyThousand(finalContribution)}`} />
             <StatCard title='Interés ganado' icon={<BiLineChart size={42} />} value={`${moneyThousand(finalInteresEarned)}`} />
             <StatCard title='Balance final' icon={<BiDollarCircle size={42} />} value={`${moneyThousand(finalBalance)}`} />
           </Flex>
 
-          <Flex h="440px" w="100%" pr={4} bg='white' px={6} py={4} borderRadius='xl' direction='column'>
+          <Flex h="440px" w="100%" pr={4} bg='white' px={6} py={4} borderRadius='lg' borderWidth={1} borderColor='gray.100' direction='column'>
             <Flex justifyContent='flex-end'>
-              {/* <Button size='sm' colorScheme='secondary' variant='ghost'>Grafica lineal</Button> */}
               <Button size='sm' colorScheme='secondary' variant='ghost' isActive={option === 1} onClick={() => setOption(1)} mr={1}>Grafica de barras</Button>
               <Button size='sm' colorScheme='secondary' variant='ghost' isActive={option === 2} onClick={() => setOption(2)}>Tabla de resultados</Button>
             </Flex>
@@ -173,17 +167,8 @@ export default function Home() {
           </Flex>
         </Flex>
 
-        <Heading as='h2' py='30px'>¿Qué es el interés compuesto?</Heading>
+        <Description />
 
-        <Text fontSize='20px' lineHeight='35px' pb='30px'>
-          El interés compuesto es el que se genera en cada periodo al agregar el capital aportado más el interés, generando un nuevo capital que se aplicara al siguiente periodo para generar más intereses.
-        </Text>
-
-        <Text fontSize='20px' lineHeight='35px' pb='30px'>
-          Se podría definir como la operación en la cual el capital aumenta al final de cada periodo por la suma de los intereses cobrados.
-        </Text>
-
-      </Flex>
     </LayoutCalculator>
   );
 }
