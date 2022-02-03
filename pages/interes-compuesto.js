@@ -1,13 +1,4 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Chart } from "react-chartjs-2";
+import { useState } from 'react';
 import { BsPercent, BsCurrencyDollar, BsPiggyBank } from 'react-icons/bs'
 import {
   Box,
@@ -15,7 +6,6 @@ import {
   Flex,
   Heading,
   HStack,
-  Icon,
   Input,
   InputGroup,
   InputLeftElement,
@@ -25,13 +15,18 @@ import {
 } from "@chakra-ui/react";
 import { BiDollarCircle, BiLineChart } from 'react-icons/bi'
 
-
 import { useInterest } from "../hooks/useInterest";
 import { moneyThousand } from "../utils/format-number";
+
 import { StatCard } from "../components/common/StatCard";
 import Head from "next/head";
+import { ChartBar } from '../components/compound/ChartBar';
+import { TableResults } from '../components/compound/TableResults';
+import { useAppContext } from '../context/AppContext';
 
 export default function Home() {
+  const [option, setOption] = useState(1)
+
   const {
     datasets,
     datasetsInitialAmmount,
@@ -55,66 +50,11 @@ export default function Home() {
     finalInteresEarned,
   } = useInterest();
 
+  const { currency } = useAppContext()
+
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
   const input = getInputProps({ readOnly: false });
-
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
-
-  const options = {
-    scales: {
-      xAxes: {
-        grid: {
-          display: false,
-        },
-        stacked: true,
-        ticks: {
-          precision: 0,
-        },
-      },
-      yAxes: {
-        grid: {
-          display: false,
-        },
-        stacked: true,
-      },
-    },
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        align: 'end'
-      }
-    }
-  };
-
-  const datasetsBar = [
-    {
-      label: "Intereses generados",
-      backgroundColor: "#2A4365",
-      borderRadius: 8,
-      data: datasets,
-      order: 3,
-    },
-    {
-      label: "Deposito inicial",
-      backgroundColor: "#90CDF4",
-      data: datasetsInitialAmmount,
-      order: 1,
-    },
-    {
-      label: "Contribuciones",
-      backgroundColor: "#3182CE",
-      data: datasetsContributions,
-      order: 2,
-    },
-  ];
 
   return (
     <>
@@ -127,7 +67,7 @@ export default function Home() {
           <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>
             Calculadora de interés compuesto
           </Heading>
-          <Text color='gray.600' fontSize='lg' pr={24}>Es aquel en el cual el capital cambia al final de cada periodo, debido a que los intereses se adicionan al capital para formar un nuevo capital </Text>
+          <Text color='gray.600' fontSize='lg' pr={24}>Calcula el interés compuesto para ver cómo sus ahorros o inversiones podrían crecer con el tiempo.</Text>
         </Box>
         <Flex mt={6} direction="column">
           <Flex w="100%" justifyContent="space-between">
@@ -136,7 +76,7 @@ export default function Home() {
                 Depósito inicial
               </Text>
               <InputGroup size='lg'>
-                <InputLeftElement children={<BsCurrencyDollar color='gray.300' />} />
+                <InputLeftElement children={<Text>{currency}</Text>} />
                 <Input
                   autoFocus
                   bg='white'
@@ -153,7 +93,7 @@ export default function Home() {
               </Text>
               <Flex alignItems='center'>
                 <InputGroup size="lg">
-                  <InputLeftElement children={<BsCurrencyDollar color='gray.300' />} />
+                  <InputLeftElement children={<Text>{currency}</Text>} />
                   <Input
                     bg='white'
                     borderRadius='xl'
@@ -213,16 +153,21 @@ export default function Home() {
           </Flex>
           <Flex justifyContent='space-between' my={6}>
             <StatCard title='Aportación total' icon={<BsPiggyBank size={42} />} value={`${moneyThousand(finalContribution)}`} />
-            <StatCard title='Interes ganado' icon={<BiLineChart size={42} />} value={`${moneyThousand(finalInteresEarned)}`} />
+            <StatCard title='Interés ganado' icon={<BiLineChart size={42} />} value={`${moneyThousand(finalInteresEarned)}`} />
             <StatCard title='Balance final' icon={<BiDollarCircle size={42} />} value={`${moneyThousand(finalBalance)}`} />
           </Flex>
-          <Flex h="400px" w="100%" pr={4} bg='white' px={6} py={4} borderRadius='xl'>
-            <Chart
-              type="bar"
-              data={{ labels, datasets: datasetsBar }}
-              height={350}
-              options={options}
-            />
+
+          <Flex h="440px" w="100%" pr={4} bg='white' px={6} py={4} borderRadius='xl' direction='column'>
+            <Flex justifyContent='flex-end'>
+              {/* <Button size='sm' colorScheme='secondary' variant='ghost'>Grafica lineal</Button> */}
+              <Button size='sm' colorScheme='secondary' variant='ghost' isActive={option === 1} onClick={() => setOption(1)} mr={1}>Grafica de barras</Button>
+              <Button size='sm' colorScheme='secondary' variant='ghost' isActive={option === 2} onClick={() => setOption(2)}>Tabla de resultados</Button>
+            </Flex>
+            {
+              option === 1
+              ? <ChartBar labels={labels} datasets={datasets} datasetsInitialAmmount={datasetsInitialAmmount} datasetsContributions={datasetsContributions} />
+              : <TableResults datasets={datasets} datasetsInitialAmmount={datasetsInitialAmmount} datasetsContributions={datasetsContributions} />
+            }
           </Flex>
         </Flex>
 
@@ -235,6 +180,7 @@ export default function Home() {
         <Text fontSize='20px' lineHeight='35px' pb='30px'>
           Se podría definir como la operación en la cual el capital aumenta al final de cada periodo por la suma de los intereses cobrados.
         </Text>
+
       </Flex>
     </>
   );

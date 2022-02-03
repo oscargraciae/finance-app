@@ -12,7 +12,6 @@ export const useInterest = () => {
   const [contribution, setContribution] = useState(2000)
   const [interestPeriod, setInterestPeriod] = useState(12)
   const [contributionPeriod, setContributionPeriod] = useState(12)
-  // const [contribution]
 
   const [finalBalance, setFinalBalance] = useState(0)
   const [finalInteresEarned, setFinalInterestEarned] = useState(0)
@@ -25,31 +24,20 @@ export const useInterest = () => {
     valueAsNumber
   } = useNumberInput({ step: 1, min: 0, defaultValue: 5, max: 50 })
 
-
-
-  // const interesInitial = 1500 * Math.pow(1.00583333, totalPeriod)
-  // const interesAportacion = 200 * ((Math.pow(1.00583333, totalPeriod) - 1) / (Math.pow(1.00583333, 1) - 1))
-  // const A =  Number(interesInitial) + Number(interesAportacion)
   function compundInterest({ initialAmount, contribution, rate, time }) {
-    const totalAmount = Number(contribution * (contributionPeriod * time)) + Number(initialAmount)
+    const totalAmount = Number(contribution * (interestPeriod * time)) + Number(initialAmount)
 
     const totalPeriod = interestPeriod * time
 
     const r = 1 + (rate / interestPeriod) / 100
     const Ci = initialAmount * Math.pow(r, totalPeriod)
-    const Cr = contribution * ((Math.pow(r, totalPeriod) - 1) / (Math.pow(r, (interestPeriod / contributionPeriod)) - 1)) // 12/355
-
-    // console.log('CI Y Cr', Ci, Cr);
-
+    const Cr = contribution * ((Math.pow(r, totalPeriod) - 1) / (Math.pow(r, 1) - 1)) // 12/355
     const Cf =  Number(Ci) + Number(Cr)
-
-    console.log('18,158.45', Cf);
-
     let CI = (Cf - totalAmount).toFixed(2)
 
     return {
       CI,
-      totalContribution: contribution * (contributionPeriod * time),
+      totalContribution: contribution * (interestPeriod * time),
       totalInitial: initialAmount,
     }
   }
@@ -72,6 +60,10 @@ export const useInterest = () => {
       tInitialAmount.push(totalInitial)
     }
 
+    console.table([tInterest, tContribution, tInitialAmount])
+    // console.table(tContribution)
+    // console.table(tInitialAmount)
+
     const fContribution = tContribution[tContribution.length - 1] + tInitialAmount[tInitialAmount.length - 1]
     const fInterest = tInterest[tInitialAmount.length - 1]
     setFinalContribution(fContribution)
@@ -81,7 +73,7 @@ export const useInterest = () => {
     setDatases(tInterest)
     setDatasesContributions(tContribution)
     setDatasesInitialAmmount(tInitialAmount)
-  }, [initialAmount, interest, valueAsNumber, contribution])
+  }, [initialAmount, interest, valueAsNumber, contribution, interestPeriod])
 
   return {
     datasets,

@@ -1,20 +1,35 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button, Flex, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, Spacer, Text } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { SideBar } from './Sidebar'
+import { BiCaretDown } from 'react-icons/bi'
+import { AppProvider, useAppContext } from '../../context/AppContext'
 
 export const Layout = ({ children }) => {
+  const { currency, setCurrency } = useAppContext()
   return (
-    <Flex flex={1} h='100vh' direction='column' bg='#d7effe'>
-      <Flex h='50px' boxShadow='md' align='center' px={6} bg='white'>
+    <Flex bg='#d7effe' direction='column'>
+      <Flex h='40px' boxShadow='md' align='center' px={6} bg='white' w='100%'>
         <Text fontWeight='bold'>Fianance header</Text>
+        <Spacer />
+        <Menu>
+          <MenuButton as={Button} variant='outline' color='#333' rightIcon={<BiCaretDown />} size='sm'>
+            Divisa {currency}
+          </MenuButton>
+          <MenuList>
+            <MenuItem color='primary.500' onClick={() => setCurrency('$')}>$</MenuItem>
+            <MenuItem color='primary.500' onClick={() => setCurrency('€')}>€</MenuItem>
+            <MenuItem color='primary.500' onClick={() => setCurrency('£')}>£</MenuItem>
+            <MenuItem color='primary.500' onClick={() => setCurrency('₹')}>₹</MenuItem>
+            <MenuItem color='primary.500' onClick={() => setCurrency('¥')}>¥</MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
-      <Flex flex={1}>
-        <Flex w='100%' flex={1} justifyContent='center'>
-          {children}
+        <Flex>
+          <Flex w='100%' justifyContent='center' flexGrow='1' minHeight='100vh'>
+            {children}
+          </Flex>
+          <SideBar />
         </Flex>
-        <Box bg='purple.200' w='300px'>
-          <Text>Publicidad</Text>
-        </Box>
-      </Flex>
     </Flex>
   )
 }
