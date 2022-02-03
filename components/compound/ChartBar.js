@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex } from '@chakra-ui/react'
+import ChartJS from 'chart.js/auto'
 import {
-  Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
@@ -19,8 +19,10 @@ export const ChartBar = ({ datasets, datasetsInitialAmmount, datasetsContributio
     BarElement,
     Title,
     Tooltip,
-    Legend
-  );
+    Legend,
+    // ...registerables
+    // ChartDataLabels
+  )
 
   const options = {
     scales: {
