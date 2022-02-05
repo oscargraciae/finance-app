@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Heading, HStack, Input, InputGroup, InputLeftElement, InputRightElement, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { BiDollarCircle, BiLineChart, BiBarChart, BiTable } from 'react-icons/bi'
-import { BsPercent, BsPiggyBank, BsCalendar3 } from 'react-icons/bs'
+import { BsPercent, BsCalendar3 } from 'react-icons/bs'
 
 import { HeadMeta } from '../../components/common/HeadMeta'
 import { StatCard } from '../../components/common/StatCard'
@@ -44,7 +44,7 @@ export default function MortgageCalculator () {
       <HeadMeta title='Calculadora de interés simple' description='La mensualidad de una hipoteca depende del capital prestado, la tasa interés y el plazo de amortización.' />
 
         <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>Calculadora de hipoteca</Heading>
-        <Text color='gray.600' fontSize='lg'>La mensualidad de una hipoteca depende del capital prestado, la tasa interés y el plazo de amortización. Con esta calculadora de hipotecas podrás ver fácilmente las cuotas y saber cuánto pagas de intereses.</Text>
+        <Text color='gray.600' fontSize='lg'>La mensualidad de una hipoteca depende del capital prestado, la tasa interés y el plazo de amortización. Con esta calculadora de hipotecas podrás ver fácilmente las cuotas y saber cuánto pagas de intereses.</Text>
 
         <Flex mt={6} direction="column">
           <Flex w="100%" justifyContent="space-between" direction={{ base: 'column', md: 'row' }}>

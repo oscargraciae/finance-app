@@ -1,10 +1,8 @@
 import React from 'react'
 import { Box, Flex, Text, Tooltip } from '@chakra-ui/react'
-import { useAppContext } from '../../context/AppContext'
 import { BiInfoCircle } from 'react-icons/bi'
 
 export const StatCard = ({ title, icon, value, info }) => {
-  const { currency } = useAppContext()
   return (
     <Box bg='#C6F6D5' p={6} w={{ base: '100%', md: '340px' }} borderRadius='lg' mb={4}>
       <Flex flex={1} justifyContent='space-between'>

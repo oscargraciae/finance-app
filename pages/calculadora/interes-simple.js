@@ -10,7 +10,6 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Select,
   Text
 } from '@chakra-ui/react'
 import { BiBarChart, BiDollarCircle, BiLineChart, BiTable } from 'react-icons/bi'
@@ -134,7 +133,7 @@ export default function Home () {
             <StatCard title='Balance final' icon={<BiDollarCircle size={42} />} value={`${currency}${moneyThousand(finalBalance)}`} />
           </Flex>
 
-          <Flex h="440px" w="100%" pr={4} bg='white' px={6} py={4} borderRadius='lg'  direction='column'>
+          <Flex h="440px" w="100%" pr={4} bg='white' px={6} py={4} borderRadius='lg' direction='column'>
             <Flex justifyContent='flex-end'>
               <Button size='sm' colorScheme='secondary' variant='ghost' leftIcon={<BiBarChart />} isActive={option === 1} onClick={() => setOption(1)} mr={1}>Gráfica</Button>
               <Button size='sm' colorScheme='secondary' variant='ghost' leftIcon={<BiTable />} isActive={option === 2} onClick={() => setOption(2)}>Tabla de resultados</Button>

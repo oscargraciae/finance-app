@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Flex, Image, Link, Menu, MenuButton, MenuItem, MenuList, Spacer } from '@chakra-ui/react'
+import { Button, Flex, Link, Menu, MenuButton, MenuItem, MenuList, Spacer } from '@chakra-ui/react'
 import { BiCaretDown } from 'react-icons/bi'
 import NextLink from 'next/link'
 import NextImage from 'next/image'

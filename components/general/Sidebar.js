@@ -2,7 +2,7 @@ import React, { Flex, Link, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 // import { FaBitcoin } from 'react-icons/fa'
-import { BsBarChartLine, BsCashCoin, BsCurrencyBitcoin, BsHouse } from 'react-icons/bs'
+import { BsBarChartLine, BsHouse } from 'react-icons/bs'
 import { GrGrow } from 'react-icons/gr'
 
 const SideItem = ({ title, icon, href }) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex, Heading, HStack, Input, InputGroup, InputLeftElement, InputRightElement, Stat, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, HStack, Input, InputGroup, InputLeftElement, InputRightElement, Text } from '@chakra-ui/react'
 
 import { HeadMeta } from '../../components/common/HeadMeta'
 
@@ -20,7 +20,7 @@ export default function AnnualGrowthRate () {
     initialAmount,
     setFinalAmount,
     finalAmount,
-    annualGrotwh,
+    annualGrotwh
   } = useAnnualGrowth()
 
   const inc = getIncrementButtonProps()
