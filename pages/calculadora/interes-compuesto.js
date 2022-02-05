@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react'
 import { BsPercent, BsPiggyBank } from 'react-icons/bs'
 import {
   Box,
@@ -11,22 +11,22 @@ import {
   InputLeftElement,
   InputRightElement,
   Select,
-  Text,
-} from "@chakra-ui/react";
-import { BiDollarCircle, BiLineChart } from 'react-icons/bi'
+  Text
+} from '@chakra-ui/react'
+import { BiBarChart, BiDollarCircle, BiLineChart, BiTable } from 'react-icons/bi'
 
-import { useInterest } from "../../hooks/useInterest";
-import { moneyThousand } from "../../utils/format-number";
+import { useInterest } from '../../hooks/useInterest'
+import { moneyThousand } from '../../utils/format-number'
 
-import { StatCard } from "../../components/common/StatCard";
-import { ChartBar } from '../../components/compound/ChartBar';
-import { TableResults } from '../../components/compound/TableResults';
-import { useAppContext } from '../../context/AppContext';
-import { Description } from '../../components/compound/Description';
-import { HeadMeta } from '../../components/common/HeadMeta';
-import { LayoutCalculator } from '../../components/general/LayoutCalculator';
+import { StatCard } from '../../components/common/StatCard'
+import { ChartBar } from '../../components/compound/ChartBar'
+import { TableResults } from '../../components/compound/TableResults'
+import { useAppContext } from '../../context/AppContext'
+import { Description } from '../../components/compound/Description'
+import { HeadMeta } from '../../components/common/HeadMeta'
+import { LayoutCalculator } from '../../components/general/LayoutCalculator'
 
-export default function Home() {
+export default function Home () {
   const [option, setOption] = useState(1)
 
   const {
@@ -45,18 +45,16 @@ export default function Home() {
     interest,
     setInterestPeriod,
     interestPeriod,
-    setContributionPeriod,
-    contributionPeriod,
     finalBalance,
     finalContribution,
-    finalInteresEarned,
-  } = useInterest();
+    finalInteresEarned
+  } = useInterest()
 
   const { currency } = useAppContext()
 
-  const inc = getIncrementButtonProps();
-  const dec = getDecrementButtonProps();
-  const input = getInputProps({ readOnly: false });
+  const inc = getIncrementButtonProps()
+  const dec = getDecrementButtonProps()
+  const input = getInputProps({ readOnly: false })
 
   return (
     <LayoutCalculator>
@@ -75,6 +73,7 @@ export default function Home() {
                 <InputLeftElement><Text>{currency}</Text></InputLeftElement>
                 <Input
                   autoFocus
+                  autoComplete='off'
                   bg='white'
                   borderRadius='lg' borderWidth={1} borderColor='gray.100'
                   name="initialAmount"
@@ -85,13 +84,14 @@ export default function Home() {
             </Box>
             <Box w={{ base: '100%', md: '20%' }} mb={{ base: 4, md: 0 }}>
               <Text fontSize="xs" fontWeight="bold">
-                Aportación{" "}
+                Aportación{' '}
               </Text>
               <Flex alignItems='center'>
                 <InputGroup size="lg">
                   <InputLeftElement><Text>{currency}</Text></InputLeftElement>
                   <Input
                     bg='white'
+                    autoComplete='off'
                     borderRadius='lg' borderWidth={1} borderColor='gray.100'
                     name="contribution"
                     value={contribution}
@@ -102,12 +102,13 @@ export default function Home() {
             </Box>
             <Box w={{ base: '100%', md: '20%' }} mb={{ base: 4, md: 0 }}>
               <Text fontSize="xs" fontWeight="bold">
-                Tasa de interés anual{" "}
+                Tasa de interés anual{' '}
               </Text>
               <Flex>
                 <InputGroup size="lg">
                   <Input
                     bg='white'
+                    autoComplete='off'
                     borderRadius='lg' borderWidth={1} borderColor='gray.100'
                     name="interest"
                     value={interest}
@@ -118,7 +119,7 @@ export default function Home() {
               </Flex>
             </Box>
             <Box w={{ base: '100%', md: '20%' }} mb={{ base: 4, md: 0 }}>
-              <Text fontSize="xs" fontWeight="bold">Pago de intereses y aportación{" "}</Text>
+              <Text fontSize="xs" fontWeight="bold">Pago de intereses y aportación{' '}</Text>
               <Flex>
                 <Select variant='outline' bg='white' borderRadius='lg' borderWidth={1} borderColor='gray.100' size='lg'value={interestPeriod} onChange={(e) => setInterestPeriod(e.target.value)}>
                   <option value='1'>Anual</option>s
@@ -129,14 +130,15 @@ export default function Home() {
                 </Select>
               </Flex>
             </Box>
-            <Box w={{ base: '100%', md: '15%'}}>
+            <Box w={{ base: '100%', md: '15%' }}>
               <Text fontSize="xs" fontWeight="bold">
-                Años a invertir{" "}
+                Años a invertir{' '}
               </Text>
               <HStack maxW="100%" spacing={0} borderWidth={1} bg='white' borderRadius='lg' borderColor='gray.100' p='3px'>
                 <Button {...dec} variant="ghost" mx={0} fontWeight="bold">-</Button>
                 <Input
                   size='lg'
+                  autoComplete='off'
                   borderRadius='lg' borderWidth={1} borderColor='gray.100'
                   name="numUsers"
                   {...input}
@@ -149,20 +151,20 @@ export default function Home() {
           </Flex>
 
           <Flex justifyContent='space-between' my={6} direction={{ base: 'column', md: 'row' }}>
-            <StatCard title='Aportación total' icon={<BsPiggyBank size={42} />} value={`${moneyThousand(finalContribution)}`} />
-            <StatCard title='Interés ganado' icon={<BiLineChart size={42} />} value={`${moneyThousand(finalInteresEarned)}`} />
-            <StatCard title='Balance final' icon={<BiDollarCircle size={42} />} value={`${moneyThousand(finalBalance)}`} />
+            <StatCard title='Aportación total' icon={<BsPiggyBank size={42} />} value={`${currency}${moneyThousand(finalContribution)}`} />
+            <StatCard title='Interés ganado' icon={<BiLineChart size={42} />} value={`${currency}${moneyThousand(finalInteresEarned)}`} />
+            <StatCard title='Balance final' icon={<BiDollarCircle size={42} />} value={`${currency}${moneyThousand(finalBalance)}`} />
           </Flex>
 
           <Flex h="440px" w="100%" pr={4} bg='white' px={6} py={4} borderRadius='lg' borderWidth={1} borderColor='gray.100' direction='column'>
             <Flex justifyContent='flex-end'>
-              <Button size='sm' colorScheme='secondary' variant='ghost' isActive={option === 1} onClick={() => setOption(1)} mr={1}>Grafica de barras</Button>
-              <Button size='sm' colorScheme='secondary' variant='ghost' isActive={option === 2} onClick={() => setOption(2)}>Tabla de resultados</Button>
+              <Button size='sm' colorScheme='secondary' variant='ghost' leftIcon={<BiBarChart />} isActive={option === 1} onClick={() => setOption(1)} mr={1}>Gráfica</Button>
+              <Button size='sm' colorScheme='secondary' variant='ghost' leftIcon={<BiTable />} isActive={option === 2} onClick={() => setOption(2)}>Tabla de resultados</Button>
             </Flex>
             {
               option === 1
-              ? <ChartBar labels={labels} datasets={datasets} datasetsInitialAmmount={datasetsInitialAmmount} datasetsContributions={datasetsContributions} />
-              : <TableResults datasets={datasets} datasetsInitialAmmount={datasetsInitialAmmount} datasetsContributions={datasetsContributions} />
+                ? <ChartBar labels={labels} datasets={datasets} datasetsInitialAmmount={datasetsInitialAmmount} datasetsContributions={datasetsContributions} />
+                : <TableResults datasets={datasets} datasetsInitialAmmount={datasetsInitialAmmount} datasetsContributions={datasetsContributions} />
             }
           </Flex>
         </Flex>
@@ -170,5 +172,5 @@ export default function Home() {
         <Description />
 
     </LayoutCalculator>
-  );
+  )
 }

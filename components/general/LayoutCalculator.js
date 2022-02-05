@@ -4,9 +4,11 @@ import { SideBar } from './Sidebar'
 
 export const LayoutCalculator = ({ children }) => {
   return (
-    <Flex justifyContent='center' minHeight='100vh'>
-      <Flex direction="column" px={8} py={8} maxW={{ base: '100%', md: '1100px' }}>
-        {children}
+    <Flex flex={1} height='100vh'>
+      <Flex direction='column' flex='1 1 0%' overflowY='auto' pt='48px'>
+        <Box px={{ base: 2, md: 6, xl: 6 }} py={6} mx='auto' w='100%' maxW='1100px'>
+          {children}
+        </Box>
       </Flex>
       <SideBar />
     </Flex>

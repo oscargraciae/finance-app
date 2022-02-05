@@ -1,14 +1,15 @@
-import { Flex, Link, Text } from "@chakra-ui/react"
+import React, { Flex, Link, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 // import { FaBitcoin } from 'react-icons/fa'
 import { BsBarChartLine, BsCashCoin, BsCurrencyBitcoin, BsHouse } from 'react-icons/bs'
+import { GrGrow } from 'react-icons/gr'
 
 const SideItem = ({ title, icon, href }) => {
   const { pathname } = useRouter()
   return (
     <Flex bg={pathname === href ? 'secondary.100' : 'transparent'} borderRadius='md' _hover={{ bg: 'blue.50' }} mt={2}>
-      <NextLink href={href}>
+      <NextLink href={href} passHref>
         <Link display='flex' flex={1} flexDirection='row' alignItems='center' fontWeight='500' px={3} py={3}>
           {icon}
           <Text ml={3} fontSize='14px' fontWeight='bold'>{title}</Text>
@@ -20,13 +21,15 @@ const SideItem = ({ title, icon, href }) => {
 
 export const SideBar = () => {
   return (
-    <Flex display={{ base: 'none', md: 'flex' }} w='330px' position='sticky' top='0px' h='100vh' direction='column' justifyContent='flex-start' alignItems='flex-start' py={6} bg='white' px={3} borderLeftWidth={1} borderLeftColor='gray.200'>
+    <Flex w='320px' alignItems='center' direction='column' display={{ base: 'none', md: 'flex' }} borderRightWidth={1} borderColor='gray.100' shadow='inner' bg='white' h='93vh' mt='48px' pt={4} px={4}>
       <Flex direction='column' pb={4} w='100%'>
-        <SideItem title='Interes simple' href='/calculadora/interes-simple' icon={<BsBarChartLine />}/>
-        <SideItem title='Interes compuesto' href='/calculadora/interes-compuesto' icon={<BsBarChartLine />} />
-        <SideItem title='Calcular hipoteca' href='/calculadora/calcular-hipoteca' icon={<BsHouse />} />
-        <SideItem title='Convertir moneda' href='/calculadora/convertir-moneda' icon={<BsCashCoin />} />
-        <SideItem title='Convertir criptomonedas' href='/calculadora/convertir-criptomonedas' icon={<BsCurrencyBitcoin />} />
+        <Text fontWeight='bold' my={2}>Calculadoras</Text>
+        <SideItem title='Calcular Interés simple' href='/calculadora/interes-simple' icon={<BsBarChartLine />}/>
+        <SideItem title='Calcular Interés compuesto' href='/calculadora/interes-compuesto' icon={<BsBarChartLine />} />
+        <SideItem title='Calcular hipoteca' href='/calculadora/hipoteca' icon={<BsHouse />} />
+        <SideItem title='Tasa de crecimiento anual' href='/calculadora/tasa-crecimiento' icon={<GrGrow />} />
+        {/* <SideItem title='Conversor de divisas' href='/calculadora/conversor-divisas' icon={<BsCashCoin />} />
+        <SideItem title='Conversor de criptomonedas' href='/calculadora/conversor-criptomonedas' icon={<BsCurrencyBitcoin />} /> */}
       </Flex>
       <Flex direction='column' pb={4} w='100%'>
       <ins className="adsbygoogle"

@@ -11,10 +11,10 @@ export const TableResults = ({ datasets, datasetsInitialAmmount, datasetsContrib
         <Thead>
           <Tr>
             <Th>Año</Th>
-            <Th>Depósito inicial</Th>
-            <Th>Aportaciones</Th>
-            <Th>Interés acumulado</Th>
-            <Th>Balance final</Th>
+            <Th isNumeric>Depósito inicial</Th>
+            <Th isNumeric>Aportaciones</Th>
+            <Th isNumeric>Interés acumulado</Th>
+            <Th isNumeric>Balance final</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -22,10 +22,10 @@ export const TableResults = ({ datasets, datasetsInitialAmmount, datasetsContrib
             return (
               <Tr key={index}>
                 <Td>{index + 1}</Td>
-                <Td>{currency}{moneyThousand(datasetsInitialAmmount[index])}</Td>
-                <Td>{currency}{moneyThousand(datasetsContributions[index])}</Td>
-                <Td>{currency}{moneyThousand(datasets[index])}</Td>
-                <Td>{currency}{moneyThousand(datasetsInitialAmmount[index] + datasetsContributions[index] + Number(datasets[index]))}</Td>
+                <Td isNumeric>{currency}{moneyThousand(datasetsInitialAmmount[index])}</Td>
+                <Td isNumeric>{currency}{moneyThousand(datasetsContributions[index])}</Td>
+                <Td isNumeric>{currency}{moneyThousand(datasets[index])}</Td>
+                <Td isNumeric>{currency}{moneyThousand(datasetsInitialAmmount[index] + datasetsContributions[index] + Number(datasets[index]))}</Td>
               </Tr>
             )
           }) }

@@ -3,8 +3,8 @@ import { extendTheme, theme as chakraTheme } from '@chakra-ui/react'
 const theme = extendTheme({
   ...chakraTheme,
   fonts: {
-    heading: 'Roboto',
-    body: 'Roboto',
+    heading: 'Lato',
+    body: 'Roboto'
   },
   styles: {
     // global: {
@@ -41,17 +41,29 @@ const theme = extendTheme({
       900: '#070519'
     },
     secondary: {
-      50: '#f3fedf',
-      100: '#dffbb3',
-      200: '#ccf787',
-      300: '#b8f458',
-      400: '#a4f02b',
-      500: '#8bd714',
-      600: '#6ba70b',
-      700: '#4c7705',
-      800: '#2c4800',
-      900: '#0c1900'
-    }
+      50: '#ebebff',
+      100: '#c7c5f1',
+      200: '#a19ee1',
+      300: '#7c78d4',
+      400: '#5751c7',
+      500: '#3e37ad',
+      600: '#302b87',
+      700: '#221f62',
+      800: '#13123d',
+      900: '#070519'
+    },
+    // secondary: {
+    //   50: '#f3fedf',
+    //   100: '#dffbb3',
+    //   200: '#ccf787',
+    //   300: '#b8f458',
+    //   400: '#a4f02b',
+    //   500: '#8bd714',
+    //   600: '#6ba70b',
+    //   700: '#4c7705',
+    //   800: '#2c4800',
+    //   900: '#0c1900'
+    // }
   },
   // breakpoints,
   components: {

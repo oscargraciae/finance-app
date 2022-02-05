@@ -11,7 +11,7 @@ import {
 } from 'chart.js'
 import { Chart } from 'react-chartjs-2'
 
-export const ChartBar = ({ datasets, datasetsInitialAmmount, datasetsContributions, labels }) => {
+export const InterestSimpleChartBar = ({ datasets, datasetsInitialAmmount, labels }) => {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -72,9 +72,8 @@ export const ChartBar = ({ datasets, datasetsInitialAmmount, datasetsContributio
   const datasetsBar = [
     {
       label: 'Intereses generados',
-      // backgroundColor: '#2A4365',
       backgroundColor: '#2F855A',
-      borderRadius: 6,
+      borderRadius: 8,
       data: datasets,
       order: 3
     },
@@ -83,12 +82,6 @@ export const ChartBar = ({ datasets, datasetsInitialAmmount, datasetsContributio
       backgroundColor: '#9AE6B4',
       data: datasetsInitialAmmount,
       order: 1
-    },
-    {
-      label: 'Contribuciones',
-      backgroundColor: '#48BB78',
-      data: datasetsContributions,
-      order: 2
     }
   ]
 

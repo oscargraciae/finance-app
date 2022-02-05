@@ -11,7 +11,7 @@ import {
 } from 'chart.js'
 import { Chart } from 'react-chartjs-2'
 
-export const ChartBar = ({ datasets, datasetsInitialAmmount, datasetsContributions, labels }) => {
+export const MortgageChart = ({ datasetPrincipal, datasetInterest, labels }) => {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -71,23 +71,18 @@ export const ChartBar = ({ datasets, datasetsInitialAmmount, datasetsContributio
 
   const datasetsBar = [
     {
-      label: 'Intereses generados',
-      // backgroundColor: '#2A4365',
-      backgroundColor: '#2F855A',
-      borderRadius: 6,
-      data: datasets,
-      order: 3
-    },
-    {
-      label: 'Deposito inicial',
+      label: 'Capital',
       backgroundColor: '#9AE6B4',
-      data: datasetsInitialAmmount,
+      borderRadius: 8,
+      data: datasetPrincipal,
       order: 1
     },
     {
-      label: 'Contribuciones',
-      backgroundColor: '#48BB78',
-      data: datasetsContributions,
+      label: 'Intereses',
+      // backgroundColor: '#90CDF4',
+      backgroundColor: '#2F855A',
+      data: datasetInterest,
+      borderRadius: 8,
       order: 2
     }
   ]
@@ -97,7 +92,7 @@ export const ChartBar = ({ datasets, datasetsInitialAmmount, datasetsContributio
       <Chart
         type="bar"
         data={{ labels, datasets: datasetsBar }}
-        height={350}
+        height={390}
         options={options}
       />
     </Flex>
