@@ -29,7 +29,7 @@ export default function AnnualGrowthRate () {
 
   return (
     <LayoutCalculator>
-      <HeadMeta title='Calculadora de interés simple' description='La mensualidad de una hipoteca depende del capital prestado, la tasa interés y el plazo de amortización.' />
+      <HeadMeta title='Calculadora de tasa de crecimiento anual compuesto' description='Calcula la tasa de rendimiento anual que se requiere para que una inversión crezca desde su saldo inicial hasta su saldo final dentro de un período particular.' />
 
       <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>Calculadora de tasa de crecimiento anual compuesto</Heading>
       <Text color='gray.600' fontSize='lg'>Calcula la tasa de rendimiento anual que se requiere para que una inversión crezca desde su saldo inicial hasta su saldo final dentro de un período particular.</Text>

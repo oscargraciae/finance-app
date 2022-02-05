@@ -27,7 +27,10 @@ export const SideBar = () => {
         <SideItem title='Calcular Interés simple' href='/calculadora/interes-simple' icon={<BsBarChartLine />}/>
         <SideItem title='Calcular Interés compuesto' href='/calculadora/interes-compuesto' icon={<BsBarChartLine />} />
         <SideItem title='Calcular hipoteca' href='/calculadora/hipoteca' icon={<BsHouse />} />
+        <SideItem title='Calcular de prestamo' href='/calculadora/hipoteca' icon={<BsHouse />} />
         <SideItem title='Tasa de crecimiento anual' href='/calculadora/tasa-crecimiento' icon={<GrGrow />} />
+        <SideItem title='Valor presente' href='/calculadora/tasa-crecimiento' icon={<GrGrow />} />
+        <SideItem title='Valor futuro' href='/calculadora/tasa-crecimiento' icon={<GrGrow />} />
         {/* <SideItem title='Conversor de divisas' href='/calculadora/conversor-divisas' icon={<BsCashCoin />} />
         <SideItem title='Conversor de criptomonedas' href='/calculadora/conversor-criptomonedas' icon={<BsCurrencyBitcoin />} /> */}
       </Flex>
