@@ -25,7 +25,7 @@ export const SideBar = () => {
 
   return (
     <>
-      <Flex w='320px' alignItems='center' direction='column' display={{ base: 'none', md: 'none' }} borderRightWidth={1} borderColor='gray.100' shadow='inner' bg='white' h='100vh' pt='55px' px={4}>
+      <Flex w='320px' alignItems='center' direction='column' display={{ base: 'none', md: 'flex' }} borderRightWidth={1} borderColor='gray.100' shadow='inner' bg='white' h='100vh' pt='55px' px={4}>
         <Flex direction='column' pb={4} w='100%'>
           <Text fontWeight='bold' my={2}>Calculadoras</Text>
           <SideItem title='Calculadora de interés simple' href='/calculadora/interes-simple' icon={<BsBarChartLine />}/>
