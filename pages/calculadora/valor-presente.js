@@ -8,6 +8,9 @@ import { useAppContext } from '../../context/AppContext'
 import { BsPercent } from 'react-icons/bs'
 import { useAnnualGrowth } from '../../hooks/useAnualGrowthRate'
 import { StatCard } from '../../components/common/StatCard'
+import { BiDollarCircle } from 'react-icons/bi'
+import { usePresentValue } from '../../hooks/usePresentValue'
+import { moneyThousand } from '../../utils/format-number'
 
 export default function AnnualGrowthRate () {
   const { currency } = useAppContext()
@@ -16,12 +19,13 @@ export default function AnnualGrowthRate () {
     getInputProps,
     getIncrementButtonProps,
     getDecrementButtonProps,
-    setInitialAmount,
-    initialAmount,
-    setFinalAmount,
-    finalAmount,
-    annualGrotwh
-  } = useAnnualGrowth()
+    setFutureAmount,
+    futureAmount,
+    setRate,
+    rate,
+    presentValue,
+    valueAsNumber
+  } = usePresentValue()
 
   const inc = getIncrementButtonProps()
   const dec = getDecrementButtonProps()
@@ -29,14 +33,14 @@ export default function AnnualGrowthRate () {
 
   return (
     <LayoutCalculator>
-      <HeadMeta title='Calculadora de tasa de crecimiento anual compuesto' description='Calcula la tasa de rendimiento anual que se requiere para que una inversión crezca desde su saldo inicial hasta su saldo final dentro de un período particular.' />
+      <HeadMeta title='Calculadora de valor presente' description='Calcula el valor presente a partir del valor futuro y la tasa de descuento.' />
 
-      <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>Calculadora de tasa de crecimiento anual compuesto</Heading>
-      <Text color='gray.600' fontSize='lg'>Calcula la tasa de rendimiento anual que se requiere para que una inversión crezca desde su saldo inicial hasta su saldo final dentro de un período particular.</Text>
+      <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>Calculadora de valor presente</Heading>
+      {/* <Text color='gray.600' fontSize='lg'>Calcula la tasa de rendimiento anual que se requiere para que una inversión crezca desde su saldo inicial hasta su saldo final dentro de un período particular.</Text> */}
 
       <Flex w="100%" justifyContent="space-between" direction={{ base: 'column', md: 'row' }} mt={6}>
         <Box w={{ base: '100%', md: '40%' }} mb={{ base: 4, md: 0 }}>
-          <Text fontSize="xs" fontWeight="bold">Valor inicial</Text>
+          <Text fontSize="xs" fontWeight="bold">Valor futuro</Text>
           <InputGroup size='lg'>
             <InputLeftElement><Text>{currency}</Text></InputLeftElement>
             <Input
@@ -44,26 +48,26 @@ export default function AnnualGrowthRate () {
               autoComplete='off'
               bg='white'
               borderRadius='lg'
-              name="initialAmount"
-              value={initialAmount}
-              onChange={(e) => setInitialAmount(e.target.value)}
+              name="futureAmount"
+              value={futureAmount}
+              onChange={(e) => setFutureAmount(e.target.value)}
             />
           </InputGroup>
         </Box>
         <Box w={{ base: '100%', md: '40%' }} mb={{ base: 4, md: 0 }}>
-          <Text fontSize="xs" fontWeight="bold">Valor final</Text>
+          <Text fontSize="xs" fontWeight="bold">Tasa de descuento</Text>
           <Flex>
             <InputGroup size="lg">
-              <InputLeftElement><Text>{currency}</Text></InputLeftElement>
               <Input
                 bg='white'
                 autoComplete='off'
                 borderRadius='lg'
-                name="finalAmount"
+                name="rate"
                 type='number'
-                value={finalAmount}
-                onChange={(e) => setFinalAmount(e.target.value)}
+                value={rate}
+                onChange={(e) => setRate(e.target.value)}
               />
+              <InputRightElement><BsPercent color='gray.300' /></InputRightElement>
             </InputGroup>
           </Flex>
         </Box>
@@ -87,7 +91,7 @@ export default function AnnualGrowthRate () {
       </Flex>
 
       <Flex justifyContent='space-between' my={6} direction={{ base: 'column', md: 'row' }}>
-        <StatCard title='Tasa de crecimiento anual compuesto' info='' icon={<BsPercent size={42} />} value={`${annualGrotwh?.toFixed(2) || 0}`} />
+        <StatCard title='Valor presente' info='' icon={<BiDollarCircle size={42} />} value={`${moneyThousand(presentValue?.toFixed(2)) || 0}`} />
       </Flex>
 
     </LayoutCalculator>

@@ -31,7 +31,7 @@ function MyApp ({ Component, pageProps }) {
             gtag('config', 'G-SB2FWTTLZ1');
           `}
         </Script>
-        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3468670183325837" crossorigin="anonymous" />
+        <Script async strategy="afterInteractive" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3468670183325837" crossorigin="anonymous" />
       </Head>
       <ChakraProvider theme={theme}>
         <AppProvider>

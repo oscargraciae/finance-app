@@ -1,25 +1,26 @@
 import React from 'react'
-import { Button, Flex, Link, Menu, MenuButton, MenuItem, MenuList, Spacer } from '@chakra-ui/react'
+import { Box, Button, Flex, IconButton, Link, Menu, MenuButton, MenuItem, MenuList, Spacer, Text } from '@chakra-ui/react'
 import { BiCaretDown } from 'react-icons/bi'
 import NextLink from 'next/link'
-import NextImage from 'next/image'
+import Image from 'next/image'
 
 import Logo from '../../public/logo1.png'
 
 import { useAppContext } from '../../context/AppContext'
+import { BsList, BsMenuApp } from 'react-icons/bs'
 
 // d7effe
 // EBF8FF
 export const Layout = ({ children }) => {
-  const { currency, setCurrency } = useAppContext()
+  const { currency, setCurrency, onOpen } = useAppContext()
   return (
-    <Flex bg='#FFFFFF' direction='column'>
+    <Flex direction='column' alignItems='center' h='100vh'>
 
-      <Flex boxShadow='md' bg='white' align='center' px={6} w='100%' position='fixed' zIndex={999} justifyContent='center'>
+      <Box boxShadow='md' bg='white' align='center' px={{ base: 0, md: 6 }} w='100%' zIndex={999} justifyContent='center' pos='fixed'>
         <Flex w='100%' alignItems='center' justifyContent='space-between' py={2}>
           <NextLink href='/' passHref>
             <Link alignItems='center' display='flex'>
-              <NextImage src={Logo} width='254' height='42' />
+              <Image alt='Controla tus finanzas y las de tu empresa' src={Logo} width={185} height={30} layout='fixed' />
             </Link>
           </NextLink>
           <Spacer />
@@ -35,15 +36,12 @@ export const Layout = ({ children }) => {
               <MenuItem color='primary.500' onClick={() => setCurrency('¥')}>¥</MenuItem>
             </MenuList>
           </Menu>
+          <IconButton display={{ base: 'flex', md: 'none' }} ml={3} colorScheme='gray' onClick={onOpen} icon={<BsList />} />
         </Flex>
-      </Flex>
+      </Box>
 
-      <Flex justifyContent='center'>
+      <Flex justifyContent='stretch' h='100%' alignItems='center' width='100%'>
         {children}
-        {/* <Flex justifyContent='center' minHeight='100vh'>
-          {children}
-        </Flex> */}
-        {/* <SideBar /> */}
       </Flex>
     </Flex>
   )

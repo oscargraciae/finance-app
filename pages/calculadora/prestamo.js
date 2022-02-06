@@ -8,10 +8,12 @@ import { StatCard } from '../../components/common/StatCard'
 import { LayoutCalculator } from '../../components/general/LayoutCalculator'
 import { MortgageTableResults } from '../../components/calculators/mortgage/MortgageTableResults'
 import { useAppContext } from '../../context/AppContext'
-import { useMortgageCalculator } from '../../hooks/useMortgageCalculator'
+
 import { moneyThousand } from '../../utils/format-number'
 import { DescriptionMortgage } from '../../components/calculators/mortgage/DescriptionMortgage'
 import { MortgageChart } from '../../components/calculators/mortgage/MortgageChart'
+import { useLoanCalculator } from '../../hooks/useLoan'
+import { LoanDescription } from '../../components/calculators/loan/LoanDescription'
 
 export default function MortgageCalculator () {
   const [option, setOption] = useState(1)
@@ -31,7 +33,7 @@ export default function MortgageCalculator () {
     finalInterestPayment,
     finalTotalPayment,
     tableResults
-  } = useMortgageCalculator()
+  } = useLoanCalculator()
 
   const { currency } = useAppContext()
 
@@ -41,10 +43,10 @@ export default function MortgageCalculator () {
 
   return (
     <LayoutCalculator>
-      <HeadMeta title='Calculadora de hipoteca' description='La mensualidad de una hipoteca depende del capital prestado, la tasa interés y el plazo de amortización. Con esta calculadora de hipotecas podrás ver fácilmente las cuotas y saber cuánto pagas de intereses.' />
+      <HeadMeta title='Calculadora de prestamo' description='¿Quieres comprar un automóvil nuevo? ¿Obtener un nuevo crédito? Con esta calculadora podrás estimar la mensualidad, el pago de intereses y el costo tota del préstamo.' />
 
-        <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>Calculadora de hipoteca</Heading>
-        <Text color='gray.600' fontSize='lg'>La mensualidad de una hipoteca depende del capital prestado, la tasa interés y el plazo de amortización. Con esta calculadora de hipotecas podrás ver fácilmente las cuotas y saber cuánto pagas de intereses.</Text>
+        <Heading as='h1' fontSize="4xl" fontWeight="700" lineHeight="100%" pb='12px'>Calculadora de prestamo</Heading>
+        <Text color='gray.600' fontSize='lg'>¿Quieres comprar un automóvil nuevo? ¿Obtener un nuevo crédito? Con esta calculadora podrás estimar la mensualidad, el pago de intereses y el costo tota del préstamo.</Text>
 
         <Flex mt={6} direction="column">
           <Flex w="100%" justifyContent="space-between" direction={{ base: 'column', md: 'row' }}>
@@ -81,8 +83,24 @@ export default function MortgageCalculator () {
               </Flex>
             </Box>
 
-            <Box w={{ base: '100%', md: '18%' }}>
+            {/* <Box w={{ base: '100%', md: '18%' }}>
               <Text fontSize="xs" fontWeight="bold">Plazo en años</Text>
+              <HStack maxW="100%" spacing={0} borderWidth={1} bg='white' borderRadius='lg' borderColor='gray.100' p='3px'>
+                <Button {...dec} variant="ghost" mx={0} fontWeight="bold">-</Button>
+                <Input
+                  autoComplete='off'
+                  size='lg'
+                  borderRadius='lg'
+                  name="numUsers"
+                  {...input}
+                  variant="unstyled"
+                  textAlign="center"
+                />
+                <Button {...inc} variant="ghost" mx={0} fontWeight="bold">+</Button>
+              </HStack>
+            </Box> */}
+            <Box w={{ base: '100%', md: '18%' }}>
+              <Text fontSize="xs" fontWeight="bold">Plazo en meses</Text>
               <HStack maxW="100%" spacing={0} borderWidth={1} bg='white' borderRadius='lg' borderColor='gray.100' p='3px'>
                 <Button {...dec} variant="ghost" mx={0} fontWeight="bold">-</Button>
                 <Input
@@ -118,8 +136,7 @@ export default function MortgageCalculator () {
           </Flex>
         </Flex>
 
-        {/* El interés simple es el que se genera al final de cada periodo y por consiguiente el capital prestado o invertido no varía y por la misma razón la cantidad recibida por interés siempre va a ser la misma, es decir, no hay capitalización de los intereses. */}
-        <DescriptionMortgage />
+        <LoanDescription />
 
     </LayoutCalculator>
   )
