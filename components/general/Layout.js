@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex, IconButton, Link, Menu, MenuButton, MenuItem, MenuList, Spacer, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, IconButton, Link, Menu, MenuButton, MenuItem, MenuList, Spacer } from '@chakra-ui/react'
 import { BiCaretDown } from 'react-icons/bi'
 import NextLink from 'next/link'
 import Image from 'next/image'
@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Logo from '../../public/logo1.png'
 
 import { useAppContext } from '../../context/AppContext'
-import { BsList, BsMenuApp } from 'react-icons/bs'
+import { BsList } from 'react-icons/bs'
 
 // d7effe
 // EBF8FF

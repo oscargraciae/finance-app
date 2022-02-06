@@ -1,16 +1,12 @@
 import React from 'react'
 import {
   Box,
-  Center,
   Flex,
   Heading,
   Link,
   Spacer,
-  Text,
-  Wrap,
-  WrapItem
+  Text
 } from '@chakra-ui/react'
-import Head from 'next/head'
 import Image from 'next/image'
 
 import ImageBackground from '../public/back_home.png'

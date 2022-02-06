@@ -1,10 +1,9 @@
-import React, { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Link, Spacer, Text, useDisclosure } from '@chakra-ui/react'
+import React, { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, Flex, Link, Spacer, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 // import { FaBitcoin } from 'react-icons/fa'
 import { BsBarChartLine, BsHouse, BsCashCoin, BsClock } from 'react-icons/bs'
 import { GrGrow } from 'react-icons/gr'
-import { useRef } from 'react'
 import { useAppContext } from '../../context/AppContext'
 
 const SideItem = ({ title, icon, href }) => {
@@ -22,7 +21,7 @@ const SideItem = ({ title, icon, href }) => {
 }
 
 export const SideBar = () => {
-  const { isOpen, onClose, onOpen, btnRef } = useAppContext()
+  const { isOpen, onClose, btnRef } = useAppContext()
 
   return (
     <>

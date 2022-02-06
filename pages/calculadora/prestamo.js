@@ -10,7 +10,6 @@ import { MortgageTableResults } from '../../components/calculators/mortgage/Mort
 import { useAppContext } from '../../context/AppContext'
 
 import { moneyThousand } from '../../utils/format-number'
-import { DescriptionMortgage } from '../../components/calculators/mortgage/DescriptionMortgage'
 import { MortgageChart } from '../../components/calculators/mortgage/MortgageChart'
 import { useLoanCalculator } from '../../hooks/useLoan'
 import { LoanDescription } from '../../components/calculators/loan/LoanDescription'

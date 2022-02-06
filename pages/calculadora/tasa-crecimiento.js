@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Flex, Heading, HStack, Input, InputGroup, InputLeftElement, InputRightElement, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, HStack, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
 
 import { HeadMeta } from '../../components/common/HeadMeta'
 

@@ -6,7 +6,6 @@ import { HeadMeta } from '../../components/common/HeadMeta'
 import { LayoutCalculator } from '../../components/general/LayoutCalculator'
 import { useAppContext } from '../../context/AppContext'
 import { BsPercent } from 'react-icons/bs'
-import { useAnnualGrowth } from '../../hooks/useAnualGrowthRate'
 import { StatCard } from '../../components/common/StatCard'
 import { BiDollarCircle } from 'react-icons/bi'
 import { usePresentValue } from '../../hooks/usePresentValue'
@@ -23,8 +22,7 @@ export default function AnnualGrowthRate () {
     futureAmount,
     setRate,
     rate,
-    presentValue,
-    valueAsNumber
+    presentValue
   } = usePresentValue()
 
   const inc = getIncrementButtonProps()
