@@ -60,7 +60,7 @@ export const useInterest = () => {
       tInitialAmount.push(totalInitial)
     }
 
-    const fContribution = tContribution[tContribution.length - 1] + tInitialAmount[tInitialAmount.length - 1]
+    const fContribution = Number(tContribution[tContribution.length - 1]) + Number(tInitialAmount[tInitialAmount.length - 1])
     const fInterest = tInterest[tInitialAmount.length - 1]
     setFinalContribution(fContribution)
     setFinalInterestEarned(fInterest)
